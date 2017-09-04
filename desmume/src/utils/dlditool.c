@@ -62,11 +62,16 @@
 
 #include <boolean.h>
 
-#ifndef _MSC_VER
+#if defined(__CELLOS_LV2__)
+#include <stdint.h>
+#include <unistd.h>
+#define MAXPATHLEN      1024
+#define getenv(x) NULL
+#elif !defined(_MSC_VER)
 #include <stdint.h>
 #include <unistd.h>
 #include <sys/param.h>
-#else
+#else 
 typedef int int32_t;
 #define MAXPATHLEN      1024
 #endif

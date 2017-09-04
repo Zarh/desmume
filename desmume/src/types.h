@@ -329,9 +329,4 @@ static INLINE double u64_to_double(u64 u)
 
 static const char hexValid[23] = {"0123456789ABCDEFabcdef"};
 
-template<typename T> inline void reconstruct(T* t) { 
-	t->~T();
-	new(t) T();
-}
-
 #endif

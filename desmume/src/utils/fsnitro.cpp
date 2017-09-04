@@ -34,6 +34,11 @@
 #endif
 #include "fsnitro.h"
 
+#ifdef __CELLOS_LV2__
+#define getcwd(x, y)
+#define chdir(x)
+#endif
+
 using namespace std;
 
 #ifdef HOST_WINDOWS

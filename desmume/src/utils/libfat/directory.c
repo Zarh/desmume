@@ -54,6 +54,12 @@
 #include <malloc.h>
 #endif
 
+#ifdef __CELLOS_LV2__
+#define COMPILE_IN_STRNLEN
+#include <stdlib.h>
+#include <alloca.h>
+#endif
+
 #ifdef COMPILE_IN_STRNLEN
 // In Mac OS X, strnlen() is unsupported prior to v10.7, so define it here.
 // mingw-w64 has it's own implementation of strnlen(), defined in  in libw64crt.

@@ -20,6 +20,9 @@
 
 #define LAYOUTS_MAX 9
 
+#define sqrt(x) sqrt((float) x)
+#define atan2(x, y) atan2((float) x, (float) y)
+
 retro_log_printf_t log_cb = NULL;
 static retro_video_refresh_t video_cb = NULL;
 static retro_input_poll_t poll_cb = NULL;

@@ -31,7 +31,7 @@
 #include <wctype.h>
 #include <string.h>
 #include "../emufile.h"
-
+#include "../armcpu.h"
 
 #define LE16(x) (x)
 #define LE32(x) (x)

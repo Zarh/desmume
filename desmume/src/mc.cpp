@@ -240,8 +240,11 @@ BackupDevice::BackupDevice()
 	filename = std::string(buf) + ".dsv";
 
 	MCLOG("MC: %s\n", filename.c_str());
-
-	bool fexists = (access(filename.c_str(), 0) == 0)?true:false;
+	
+	struct stat buffer;   
+	bool fexists = (stat (filename.c_str(), &buffer) == 0)?true:false; 
+	
+	//bool fexists = (access(filename.c_str(), 0) == 0)?true:false;
 
 	if (fexists && CommonSettings.backupSave)
 	{

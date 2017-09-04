@@ -53,6 +53,13 @@ inline T SIGNED_OVERFLOW(T a,T b,T c) { return BIT31(((a)&(b)&(~c)) | ((~a)&(~(b
 template<typename T>
 inline T SIGNED_UNDERFLOW(T a,T b,T c) { return BIT31(((a)&(~(b))&(~c)) | ((~a)&(b)&(c))); }
 
+template<typename T>
+inline void reconstruct(T* t) { 
+	t->~T();
+	new(t) T();
+}
+
+
 #if !defined(bswap32)
 #define bswap32(val) \
 			( (val << 24) & 0xFF000000) | \
