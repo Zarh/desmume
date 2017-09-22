@@ -134,7 +134,7 @@ else ifeq ($(platform), ps3)
    CC = $(CELL_SDK)/host-win32/ppu/bin/ppu-lv2-gcc.exe
    CXX = $(CELL_SDK)/host-win32/ppu/bin/ppu-lv2-g++.exe
    AR = $(CELL_SDK)/host-win32/ppu/bin/ppu-lv2-ar.exe
-   CXXFLAGS += -D__ppc__ -D__CELLOS_LV2__
+   CXXFLAGS += -D__ppc__ -D__CELLOS_LV2__ -DEXTERNAL_BIOS
    STATIC_LINKING = 1
 
 # sncps3

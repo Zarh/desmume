@@ -945,6 +945,83 @@ static void check_variables(bool first_boot)
    else{
 	   pointer_colour = 0xFFFF;
    }
+   
+#ifdef EXTERNAL_BIOS
+   var.key = "desmume_use_external_bios";
+
+   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+   {
+      if (!strcmp(var.value, "enabled"))
+         CommonSettings.UseExtBIOS = true;
+      else if (!strcmp(var.value, "disabled"))
+         CommonSettings.UseExtBIOS = false;
+   }
+   else
+      CommonSettings.UseExtBIOS = false;
+	  
+   var.key = "desmume_SWI_from_bios";
+
+   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+   {
+      if (!strcmp(var.value, "enabled"))
+         CommonSettings.SWIFromBIOS = true;
+      else if (!strcmp(var.value, "disabled"))
+         CommonSettings.SWIFromBIOS = false;
+   }
+   else
+      CommonSettings.SWIFromBIOS = false;
+
+   var.key = "desmume_patch_SWI3";
+
+   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+   {
+      if (!strcmp(var.value, "enabled"))
+         CommonSettings.PatchSWI3 = true;
+      else if (!strcmp(var.value, "disabled"))
+         CommonSettings.PatchSWI3 = false;
+   }
+   else
+      CommonSettings.PatchSWI3 = false;
+   
+   var.key = "desmume_use_external_firmware";
+
+   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+   {
+      if (!strcmp(var.value, "enabled"))
+         CommonSettings.UseExtFirmware = true;
+      else if (!strcmp(var.value, "disabled"))
+         CommonSettings.UseExtFirmware = false;
+   }
+   else
+      CommonSettings.UseExtFirmware = false;
+
+   var.key = "desmume_use_external_firmware_settings";
+
+   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+   {
+      if (!strcmp(var.value, "enabled"))
+         CommonSettings.UseExtFirmwareSettings = true;
+      else if (!strcmp(var.value, "disabled"))
+         CommonSettings.UseExtFirmwareSettings = false;
+   }
+   else
+      CommonSettings.UseExtFirmwareSettings = false;
+   
+   
+   var.key = "desmume_boot_on_firmware";
+
+   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+   {
+      if (!strcmp(var.value, "enabled"))
+         CommonSettings.BootFromFirmware = true;
+      else if (!strcmp(var.value, "disabled"))
+         CommonSettings.BootFromFirmware = false;
+   }
+   else
+      CommonSettings.BootFromFirmware = false;
+	  
+#endif
+
 }
 
 #ifndef GPU3D_NULL
@@ -1019,6 +1096,14 @@ void retro_set_environment(retro_environment_t cb)
       { "desmume_gfx_txthack", "Enable TXT Hack; disabled|enabled"},
       { "desmume_mic_force_enable", "Force Microphone Enable; disabled|enabled" },
       { "desmume_mic_mode", "Microphone Simulation Settings; internal|sample|random|physical" },
+#ifdef EXTERNAL_BIOS
+	  { "desmume_use_external_bios", "Use external Bios; disabled|enabled" },
+	  { "desmume_SWI_from_bios", "Enable the emulation of SWI; disabled|enabled" },
+	  { "desmume_patch_SWI3", "Patch SWI; disabled|enabled" },
+	  { "desmume_use_external_firmware", "Use external Firmware; disabled|enabled" },
+	  { "desmume_use_external_firmware_settings", "Use external Firmware settings; disabled|enabled" },
+	  { "desmume_boot_on_firmware", "Boot on firmware; disabled|enabled" },
+#endif
 	  { 0, 0 }
    };
 

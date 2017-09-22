@@ -38,6 +38,12 @@ class EMUFILE;
 #define LAYOUT_HYBRID_TOP_ONLY            6
 #define LAYOUT_HYBRID_BOTTOM_ONLY         7
 
+#ifdef __CELLOS_LV2__
+#define ABSOLUTE_PATH "/dev_hdd0/game/SSNE10000/USRDIR/cores/system/"
+#else
+#define ABSOLUTE_PATH
+#endif
+
 template<typename Type>
 struct buttonstruct {
 	union {
@@ -515,9 +521,9 @@ extern struct TCommonSettings {
 		, backupSave(false)
 		, SPU_sync_method(0)
 	{
-		strcpy(ARM9BIOS, "biosnds9.bin");
-		strcpy(ARM7BIOS, "biosnds7.bin");
-		strcpy(Firmware, "firmware.bin");
+		strcpy(ARM9BIOS, ABSOLUTE_PATH "biosnds9.bin");
+		strcpy(ARM7BIOS, ABSOLUTE_PATH "biosnds7.bin");
+		strcpy(Firmware, ABSOLUTE_PATH "firmware.bin");
 
 		/* WIFI mode: adhoc = 0, infrastructure = 1 */
 		wifi.mode = 1;
